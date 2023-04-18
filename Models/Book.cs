@@ -15,11 +15,11 @@ namespace _1670_1.Models
         [Range(1, 101, ErrorMessage = "Book unit price must be 1 to 100 dolar")]
         public double Price { get; set; }
         [Required]
-        [Range(1, 1000, ErrorMessage = "Quantity must be 1 to 1000")]
+        [Range(0, 1000, ErrorMessage = "Quantity must be 1 to 1000")]
         public int Quantity { get; set; }
         [Required, StringLength(255), MaxLength(255), MinLength(1)]
         public string Image { get; set; }
-        public string Description { get; set; }
+        public string? Description { get; set; }
         [Required]
         [Display(Name = "Category")]
         public int IdCategory { get; set; }

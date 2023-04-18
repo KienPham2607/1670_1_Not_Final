@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using _1670_1.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<_1670_1Context>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("_1670_1Context") ?? throw new InvalidOperationException("Connection string '_1670_1Context' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -22,6 +27,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Books}/{action=Index}/{id?}");
 
 app.Run();
