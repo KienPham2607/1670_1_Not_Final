@@ -6,7 +6,12 @@
 }
 
 <h1>Index</h1>
-
+<form asp-controller="Books" asp-action="Index">
+    <p>
+        Book name: <input type="text" name="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
 <p>
     <a asp-action="Create">Create New</a>
 </p>

@@ -20,11 +20,26 @@ namespace _1670_1.Controllers
         }
 
         // GET: Books
-        public async Task<IActionResult> Index()
+        //public async Task<IActionResult> Index()
+        //{
+
+        //    return _context.Book != null ?
+        //                View(await _context.Book.ToListAsync()) :
+        //                Problem("Entity set '_1670_1Context.Book'  is null.");
+        //}
+        public async Task<IActionResult> Index(string searchString)
         {
-              return _context.Book != null ? 
-                          View(await _context.Book.ToListAsync()) :
-                          Problem("Entity set '_1670_1Context.Book'  is null.");
+            if (_context.Book == null)
+            {
+                return Problem("Entity set '_1670_1Context.Book'  is null.");
+            }
+
+            var books = from m in _context.Book select m;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                books = books.Where(s  => s.Name!.Contains(searchString));
+            }
+            return View(await books.ToListAsync());
         }
 
         // GET: Books/Details/5
